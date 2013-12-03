@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SmoothieSolution</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="guest">Enter as Guest</string>
+    <string name="register">Register as New User</string>
+    <string name="login">Login to Existing Account</string>
+    <string name="title_activity_register">Register</string>
+    <string name="signup_text">Register for The Smoothie Solution</string>
+    <string name="name">Full Name</string>
+    <string name="email">Email Address</string>
+    <string name="password">Password</string>
+    <string name="password2">Re-enter Password</string>
+    <string name="signup">Sign Up</string>
+    
+
+</resources>

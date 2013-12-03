@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#ffffffff"
+    android:orientation="vertical"
+    android:gravity="center_horizontal" >
+
+    <ImageView 
+        android:layout_height = "240dp"
+        android:layout_width = "300dp"
+        android:src="@drawable/smoothie"/>
+    
+    <Button
+        android:id="@+id/guest"
+        android:layout_height = "wrap_content"
+        android:layout_width = "wrap_content"
+        android:text="@string/guest"
+        android:background= "#feea65"
+        android:padding="10dp"
+        android:textSize="25sp"/>
+    
+     <Button
+         android:id="@+id/register"
+        android:layout_height = "wrap_content"
+        android:layout_width = "wrap_content"
+        android:text="@string/register"
+        android:background= "#c03b72"
+        android:padding="10dp"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"/>
+     
+      <Button
+        android:id="@+id/login"
+        android:layout_height = "wrap_content"
+        android:layout_width = "wrap_content"
+        android:text="@string/login"
+        android:background= "#afcd0b"
+        android:padding="10dp"
+        android:textSize="25sp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>
