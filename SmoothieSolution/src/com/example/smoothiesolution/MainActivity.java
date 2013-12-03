@@ -29,6 +29,16 @@ public class MainActivity extends Activity {
 		ActionBar actionbar = getActionBar();
 		actionbar.hide();
 		
+		login.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(MainActivity.this, Login.class);
+				startActivity(i);
+				
+			}
+		});
+		
 		register.setOnClickListener(new View.OnClickListener() {
 			
 			@Override

@@ -7,7 +7,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SignUp"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:gravity = "center">
     
        <TextView
        android:layout_width="wrap_content"
@@ -15,47 +16,43 @@
        android:text="@string/signup_text"
        android:id = "@+id/signup_text"
        android:textSize = "24sp"
-       android:textColor = "#161a3f"
        android:layout_gravity="center_horizontal"
        android:layout_marginBottom="30dp"/>
     
        <EditText
-       android:id="@+id/fname"
+       android:id="@+id/name"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:inputType="text|textNoSuggestions"
        android:hint="@string/name"
-       android:textColor="#10294f"
        android:layout_gravity="center_horizontal"
+       android:layout_marginTop="20dp"
        />
         
          <EditText
-       android:id="@+id/SMU_email"
+       android:id="@+id/email"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:inputType="textEmailAddress|textNoSuggestions"
        android:hint="@string/email"
-       android:textColor="#10294f"
        android:layout_gravity="center_horizontal"
        />
          
           <EditText
-       android:id="@+id/password_signup"
+       android:id="@+id/password"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:inputType="textPassword|textNoSuggestions"
        android:hint="@string/password"
-       android:textColor="#10294f"
        android:layout_gravity="center_horizontal"
        />
           
           <EditText
-       android:id="@+id/password_signup_two"
+       android:id="@+id/password2"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:inputType="textPassword|textNoSuggestions"
        android:hint="@string/password2"
-       android:textColor="#10294f"
        android:layout_gravity="center_horizontal"
        />
           
@@ -66,6 +63,8 @@
       android:layout_marginTop="30dp"
       android:text="@string/signup"
       android:layout_gravity="center_horizontal"
+      android:paddingLeft = "10dp"
+      android:paddingRight = "10dp"
        />
         
 </LinearLayout>

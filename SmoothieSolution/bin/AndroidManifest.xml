@@ -26,6 +26,10 @@
             android:name="com.example.smoothiesolution.Register"
             android:label="@string/title_activity_register" >
         </activity>
+        <activity
+            android:name="com.example.smoothiesolution.Login"
+            android:label="@string/title_activity_login" >
+        </activity>
     </application>
 
 </manifest>
