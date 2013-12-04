@@ -29,13 +29,11 @@ public class Register extends Activity {
 		final EditText email = (EditText) findViewById(R.id.email);
 		final EditText password = (EditText) findViewById(R.id.password);
 		final EditText password2 = (EditText) findViewById(R.id.password2);
-		final TextView signup_text = (TextView) findViewById(R.id.signup_text);
 		
 		name.setTypeface(typeFace);
 		email.setTypeface(typeFace);
 		password.setTypeface(typeFace);
 		password2.setTypeface(typeFace);
-		signup_text.setTypeface(typeFace);
 		
 		signup.setOnClickListener(new View.OnClickListener() {
 			
@@ -57,8 +55,8 @@ public class Register extends Activity {
 		        	check = 1;
 				}
 				
-				if (password.getText().toString().trim().equals("") || password.getText().toString().length() < 8) {
-			    	Toast toast4 = Toast.makeText(context, "Your password must contain at least 8 characters", duration);
+				if (password.getText().toString().trim().equals("") || password.getText().toString().length() < 8 || password.getText().toString().length() >12) {
+			    	Toast toast4 = Toast.makeText(context, "Your password must be between 8 and 12 characters", duration);
 		        	toast4.show();
 		        	check = 1;
 				}
