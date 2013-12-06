@@ -30,6 +30,10 @@
             android:name="com.example.smoothiesolution.Login"
             android:label="@string/title_activity_login" >
         </activity>
+        <activity
+            android:name="com.example.smoothiesolution.Recipes"
+            android:label="@string/title_activity_recipes" >
+        </activity>
     </application>
 
 </manifest>

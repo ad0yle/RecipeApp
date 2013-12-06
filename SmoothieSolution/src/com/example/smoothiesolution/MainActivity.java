@@ -47,6 +47,15 @@ public class MainActivity extends Activity {
 	        	startActivity(i);
 			}
 		});
+		
+		guest.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(MainActivity.this, Recipes.class);
+	        	startActivity(i);
+			}
+		});
 	}
 
 	@Override
