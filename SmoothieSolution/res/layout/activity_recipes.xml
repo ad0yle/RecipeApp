@@ -6,21 +6,35 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".Recipes" >
+    tools:context=".LoginActivity" 
+    android:gravity= "center"
+    android:background = "@drawable/chevron_background">
 
+    <RelativeLayout
+        android:background="#96ffffff"
+    	android:layout_width= "250dp"
+    	android:layout_height= "600dp">
     
     	<Button
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "@string/view_all"
-        android:id = "@+id/logout"/>
+        android:layout_height = "35dp"
+        android:layout_width = "90dp"
+        android:background = "@drawable/view_all"
+        android:id = "@+id/view_all"/>
     	
     	<Button
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "@string/logout"
+        android:layout_width = "70dp"
+        android:layout_height = "35dp"
+        android:background = "@drawable/logout"
         android:id = "@+id/logout"
 	    android:layout_alignParentRight="true"/>
+    	
+    	<Button
+        android:layout_width = "70dp"
+        android:layout_height = "35dp"
+        android:background="@drawable/login_home"
+        android:id = "@+id/login"
+	    android:layout_alignParentRight="true"
+	    android:visibility="invisible"/>
     	    		
 	<ListView
 	    android:layout_width = "match_parent"
@@ -32,14 +46,18 @@
 	
     <Button
         android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "@string/categories"
-        android:layout_alignParentBottom="true"/>
+        android:layout_height = "40dp"
+        android:background = "@drawable/categories"
+        android:id = "@+id/categories"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
     <Button
         android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "@string/favorites"
+        android:layout_height = "40dp"
+        android:background= "@drawable/favorites"
+        android:id = "@+id/favorites"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
 
+</RelativeLayout>
 </RelativeLayout>

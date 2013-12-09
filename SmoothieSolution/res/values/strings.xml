@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SmoothieSolution</string>
+    <string name="app_name">The Smoothie\nSolution</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="guest">Enter as Guest</string>
@@ -22,6 +22,7 @@
     <string name="categories">Categories</string>
     <string name="favorites">Favorites</string>
     <string name="logout">Logout</string>
+     <string name="login_recipes">Login</string>
     <string name="view_all">View All</string>
 
 </resources>

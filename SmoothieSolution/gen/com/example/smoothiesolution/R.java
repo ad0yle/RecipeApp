@@ -25,28 +25,37 @@ public final class R {
         public static final int button_login=0x7f020001;
         public static final int button_register=0x7f020002;
         public static final int button_signup=0x7f020003;
-        public static final int chevron_background=0x7f020004;
-        public static final int ic_launcher=0x7f020005;
-        public static final int launcher=0x7f020006;
-        public static final int login=0x7f020007;
-        public static final int login_page_button=0x7f020008;
-        public static final int login_smoothie=0x7f020009;
-        public static final int register=0x7f02000a;
-        public static final int smoothie=0x7f02000b;
+        public static final int categories=0x7f020004;
+        public static final int chevron_background=0x7f020005;
+        public static final int favorites=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int launcher=0x7f020008;
+        public static final int login=0x7f020009;
+        public static final int login_home=0x7f02000a;
+        public static final int login_page_button=0x7f02000b;
+        public static final int login_smoothie=0x7f02000c;
+        public static final int logout=0x7f02000d;
+        public static final int register=0x7f02000e;
+        public static final int smoothie=0x7f02000f;
+        public static final int smoothie_banner=0x7f020010;
+        public static final int view_all=0x7f020011;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000b;
+        public static final int action_settings=0x7f08000e;
+        public static final int categories=0x7f080009;
         public static final int email=0x7f080000;
+        public static final int favorites=0x7f08000a;
         public static final int guest=0x7f080003;
-        public static final int listview=0x7f080007;
+        public static final int listview=0x7f080008;
         public static final int login=0x7f080005;
         public static final int login_button=0x7f080002;
-        public static final int logout=0x7f080006;
-        public static final int name=0x7f080008;
+        public static final int logout=0x7f080007;
+        public static final int name=0x7f08000b;
         public static final int password=0x7f080001;
-        public static final int password2=0x7f080009;
+        public static final int password2=0x7f08000c;
         public static final int register=0x7f080004;
-        public static final int signup=0x7f08000a;
+        public static final int signup=0x7f08000d;
+        public static final int view_all=0x7f080006;
     }
     public static final class layout {
         public static final int activity_login=0x7f030000;
@@ -72,6 +81,7 @@ public final class R {
         public static final int hint2=0x7f05000e;
         public static final int login=0x7f050005;
         public static final int login_button=0x7f050010;
+        public static final int login_recipes=0x7f050015;
         public static final int logout=0x7f050014;
         public static final int name=0x7f050008;
         public static final int password=0x7f05000a;
@@ -82,7 +92,7 @@ public final class R {
         public static final int title_activity_login=0x7f05000f;
         public static final int title_activity_recipes=0x7f050011;
         public static final int title_activity_register=0x7f050006;
-        public static final int view_all=0x7f050015;
+        public static final int view_all=0x7f050016;
     }
     public static final class style {
         /** 

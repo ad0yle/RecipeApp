@@ -52,6 +52,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				Intent i = new Intent(MainActivity.this, Recipes.class);
+				Bundle b = new Bundle();
+				b.putString("id","none");
+				i.putExtras(b);
 	        	startActivity(i);
 			}
 		});

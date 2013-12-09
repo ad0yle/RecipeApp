@@ -26,8 +26,8 @@
     
     <Button
         android:id="@+id/guest"
-        android:layout_height = "wrap_content"
-        android:layout_width = "wrap_content"
+        android:layout_height = "40dp"
+        android:layout_width = "130dp"
         android:background= "@drawable/button_guest"
         android:padding="10dp"
         android:textSize="15sp"/>

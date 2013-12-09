@@ -42,18 +42,11 @@ public class Register extends Activity {
 		ActionBar actionbar = getActionBar();
 		actionbar.hide();
 		
-		Typeface typeFace = Typeface.createFromAsset(this.getAssets(),"fonts/26317-2.ttf");
 		Button signup = (Button) findViewById(R.id.signup);
-		signup.setTypeface(typeFace);
 		final EditText name = (EditText) findViewById(R.id.name);
 		final EditText email = (EditText) findViewById(R.id.email);
 		final EditText password = (EditText) findViewById(R.id.password);
 		final EditText password2 = (EditText) findViewById(R.id.password2);
-		
-		name.setTypeface(typeFace);
-		email.setTypeface(typeFace);
-		password.setTypeface(typeFace);
-		password2.setTypeface(typeFace);
 		
 		signup.setOnClickListener(new View.OnClickListener() {
 			
