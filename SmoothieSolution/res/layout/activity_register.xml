@@ -9,15 +9,21 @@
     tools:context=".SignUp"
     android:orientation="vertical" 
     android:gravity = "center"
-    android:background = "#ffffffff">
+    android:background = "@drawable/chevron_background">
     
+    <LinearLayout
+         android:background="#96ffffff"
+    	android:orientation="vertical"
+    	android:gravity="center_horizontal"
+    	android:layout_width= "250dp"
+    	android:layout_height= "600dp">
+    	
        <ImageView
        android:layout_width="wrap_content"
        android:layout_height= "wrap_content"
-       android:text="@string/signup_text"
        android:src="@drawable/register"
        android:layout_gravity="center_horizontal"
-       android:layout_marginBottom="30dp"/>
+       android:layout_marginTop = "20dp"/>
     
        <EditText
        android:id="@+id/name"
@@ -28,6 +34,7 @@
        android:layout_gravity="center_horizontal"
        android:textColor="#c03b72"
        android:textSize = "25sp"
+       android:layout_marginTop = "-20dp"
        />
         
          <EditText
@@ -68,11 +75,9 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="30dp"
-      android:text="@string/signup"
       android:layout_gravity="center_horizontal"
-      android:background="#c03b72"
-      android:textColor="#ffffff"
-      android:textSize = "25sp"
+      android:background="@drawable/button_signup"
        />
+         </LinearLayout>
         
 </LinearLayout>

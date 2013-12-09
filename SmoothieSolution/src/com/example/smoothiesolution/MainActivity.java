@@ -4,10 +4,13 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
@@ -16,15 +19,11 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		Typeface typeFace = Typeface.createFromAsset(this.getAssets(),"fonts/26317-2.ttf");
 		Button guest = (Button) findViewById(R.id.guest);
-		guest.setTypeface(typeFace);
 		
 		Button register = (Button) findViewById(R.id.register);
-		register.setTypeface(typeFace);
 		
 		Button login = (Button) findViewById(R.id.login);
-		login.setTypeface(typeFace);
 		
 		ActionBar actionbar = getActionBar();
 		actionbar.hide();

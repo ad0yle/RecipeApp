@@ -7,42 +7,49 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    android:background="#ffffffff"
-    android:orientation="vertical"
+    android:background="@drawable/chevron_background"
     android:gravity="center_horizontal" >
 
+    <LinearLayout     
+        android:background="#96ffffff"
+    	android:orientation="vertical"
+    	android:gravity="center_horizontal"
+    	android:layout_width= "250dp"
+    	android:layout_height= "600dp"
+    	android:layout_marginTop="-20dp">
+    	 
     <ImageView 
-        android:layout_height = "240dp"
-        android:layout_width = "300dp"
-        android:src="@drawable/smoothie"/>
+        android:layout_height = "200dp"
+        android:layout_width = "230dp"
+        android:src="@drawable/smoothie"
+        android:layout_marginTop="50dp"/>
     
     <Button
         android:id="@+id/guest"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
-        android:text="@string/guest"
-        android:background= "#feea65"
+        android:background= "@drawable/button_guest"
         android:padding="10dp"
-        android:textSize="25sp"/>
+        android:textSize="15sp"/>
     
      <Button
          android:id="@+id/register"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
-        android:text="@string/register"
-        android:background= "#c03b72"
+        android:background="@drawable/button_register"
         android:padding="10dp"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:layout_marginTop="20dp"/>
      
       <Button
         android:id="@+id/login"
         android:layout_height = "wrap_content"
         android:layout_width = "wrap_content"
-        android:text="@string/login"
-        android:background= "#afcd0b"
+        android:background="@drawable/button_login"
         android:padding="10dp"
-        android:textSize="25sp"
+        android:textSize="15sp"
         android:layout_marginTop="20dp"/>
+      
+</LinearLayout>
 
 </LinearLayout>

@@ -9,13 +9,21 @@
     tools:context=".LoginActivity" 
     android:orientation="vertical"
     android:gravity= "center"
-    android:background = "#ffffffff">
+    android:background = "@drawable/chevron_background">
 
+    <LinearLayout
+        android:background="#96ffffff"
+    	android:orientation="vertical"
+    	android:gravity="center_horizontal"
+    	android:layout_width= "250dp"
+    	android:layout_height= "600dp">
+    	
    <ImageView
        android:layout_width="wrap_content"
        android:layout_height= "wrap_content"
-       android:src="@drawable/login"
-       android:layout_marginBottom="30dp"/>
+       android:src="@drawable/login_smoothie"
+       android:layout_gravity="center_horizontal"
+       android:layout_marginTop = "20dp"/>
     
    <EditText
        android:id="@+id/email"
@@ -41,11 +49,9 @@
       android:id ="@+id/login_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="@string/login_button"
-      android:background="#afcd0b"
-      android:textColor = "#ffffff"
+      android:background="@drawable/login_page_button"
       android:layout_marginTop = "20dp"
       android:textSize = "25sp"
        />
-        
+ </LinearLayout>       
 </LinearLayout>
