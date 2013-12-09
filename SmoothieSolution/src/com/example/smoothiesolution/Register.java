@@ -141,11 +141,13 @@ public class Register extends Activity {
         	int duration = Toast.LENGTH_SHORT;
         	Context context = getApplicationContext();
         	if (result.equals("error")) {
-        		Toast toast = Toast.makeText(context, "This email address is already registered. Go back to login", duration);
-	        	toast.show();         			
+        		Toast toast = Toast.makeText(context, "This email address is already registered.", duration);
+	        	toast.show();   
         		} else {
         			Toast toast1 = Toast.makeText(context, "Registration successful. Please login.", duration);
     	        	toast1.show();	
+    	        	Intent i = new Intent(Register.this, MainActivity.class);
+    	        	startActivity(i);
         		}
         }
     }
