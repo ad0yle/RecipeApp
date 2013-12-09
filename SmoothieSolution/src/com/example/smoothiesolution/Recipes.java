@@ -3,6 +3,7 @@ package com.example.smoothiesolution;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +32,29 @@ public class Recipes extends Activity {
 			logout.setVisibility(View.INVISIBLE);
 			login.setVisibility(View.VISIBLE);
 		}
+	
+		login.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(Recipes.this, MainActivity.class);
+				startActivity(i);
+				
+			}
+		});
+		
+	logout.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent i = new Intent(Recipes.this, MainActivity.class);
+				startActivity(i);
+				
+			}
+		});
+	
+	
+		
 	}
 
 	@Override

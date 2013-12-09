@@ -82,7 +82,7 @@ public class Register extends Activity {
 				
 				if (check == 0) {
 				
-			    new DownloadFilesTask().execute("http://ec2-54-242-12-103.compute-1.amazonaws.com/smoothies/register.php");
+			    new DownloadFilesTask().execute("http://ec2-54-242-12-103.compute-1.amazonaws.com/API/register.php");
 				}
 				
 			}
@@ -114,18 +114,17 @@ public class Register extends Activity {
     		final String url = urls[0];
     		String result = " ";
         	HttpClient client = new DefaultHttpClient();
-        	HttpPost post = new HttpPost(url);
+        	final HttpPost post = new HttpPost(url);
         	try {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("name",name_text));
-                nameValuePairs.add(new BasicNameValuePair("email", email_text));
-                nameValuePairs.add(new BasicNameValuePair("password", pw));
+                nameValuePairs.add(new BasicNameValuePair("email",email_text));
+                nameValuePairs.add(new BasicNameValuePair("password",pw));
                 UrlEncodedFormEntity ent = new UrlEncodedFormEntity(nameValuePairs,HTTP.UTF_8);
                 post.setEntity(ent);
                 HttpResponse response = client.execute(post);
                 HttpEntity entity = response.getEntity();
     			if (null != entity) {
-    				Log.d("ALD","MEOW");
     				result = EntityUtils.toString(entity); 
     				Log.d("ALD",result);
     			}   
