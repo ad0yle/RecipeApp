@@ -41,6 +41,7 @@
 	    android:layout_height = "300dp" 
 	    android:id="@+id/listview"
 	    android:layout_below="@id/logout"
+	    android:layout_marginTop = "25dp"
 	    />
 	
 	

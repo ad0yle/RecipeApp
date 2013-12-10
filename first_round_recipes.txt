@@ -1,0 +1,234 @@
+{
+    "recipes": [
+        {
+            "name": "Strawberry Julius",
+            "category": "Fruit",
+            "prep_time": "5 minutes",
+            "ingredients": [
+                "item": "1 cup strawberry - sliced",
+                "item": "1/2 cup milk",
+                "item": "1/2 cup water",
+                "item": "1/4 cup sugar",
+                "item": "1/2 tsp vanilla",
+            ],
+            "steps": [
+                "step": "Slice up fresh strawberries until you have enough to fill a one cup measure.",
+                "step": "Add to a blender or food processor, or if you only have a stick mixer, just put it in a large pyrex jug.",
+                "step": "Add rest of ingredients.",
+                "step": "Blend until smooth.",
+                
+            ]
+        }
+
+            {
+            "name": "Hazelnut Mocha Smoothie",
+            "category": "Coffee",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "1 cup milk",
+                "item": "1/2 cup nutella",
+                "item": "6 ice cubes",
+                "item": "4 tsps instant espresso powder",
+                "item": "2 cups vanilla ice cream",
+                
+            ],
+            "steps": [
+                "step": "In a blender, combine the milk, Nutella and espresso powder",
+                "step": "Cover and process until blended",
+                "step": "Add ice cubes: cover and process until smooth",
+                "step": "Add ice cream: cover and process until smooth",
+                
+            ]
+        }{
+            "name": "Kale Smoothie With Pineapple and Banana",
+            "category": "Green",
+            "prep_time": "5 minutes",
+            "ingredients": [
+                "item": "1/2 cup coconut milk",
+                "item": "2 cups stemmed and choppen kale or spinach",
+                "item": "1.5 cups of chopped pineapple",
+                "item": "1 ripe banana, chopped"
+            ],
+            "steps": [
+                "step": "Combine the coconut milk, ½ cup water, the kale, pineapple, and banana in a blender and puree until smooth, about 1 minute, adding more water to reach the desired consistency."
+            ]
+        }{
+            "name": "Peanut Butter Cup Raspberry Smoothie",
+            "category": "Dessert",
+            "prep_time": "5 minutes",
+            "ingredients": [
+                "item": "1/2 cup Ben and Jerry's Peanut Butter Cup ice cream",
+                "item": "1/2 cup raspberries",
+                "item": "1 cup almond milk",
+                "item": "1 tbsp malt powder",
+                "item": "1 tsp unsweetened cocoa",
+                "item": "1 banana, chopped"
+            ],
+            "steps": [
+                "step": "Add all ingredients to the blender and blend until smooth."
+            ]
+        }{
+            "name": "Banana Walnut Bliss",
+            "category": "Workout",
+            "prep_time": "5 minutes",
+            "ingredients": [
+                "item": "2 cups (500 mL) skim milk",
+                "item": "1 Tbsp (15 mL) honey",
+                "item": "1/4 tsp (1 mL) vanilla extract",
+                "item": "Handful walnut pieces (or 7 halves)",
+                "item": "1 banana"
+            ],
+            "steps": [
+                "step": "Blend all ingredients together."
+            ]
+        }{
+            "name": "Basic Fruit Smoothie",
+            "category": "Fruit",
+            "prep_time": "5 minutes",
+            "ingredients": [
+                "item": "1 quart stawberries",
+                "item": "2 peaches",
+                "item": "1 cup orange-peach-mango juice",
+                "item": "2 cups ice",
+                "item": "1 banana"
+            ],
+            "steps": [
+                "step": "In a blender, combine strawberries, banana and peaches.""step": "Blend until fruit is pureed.""step": "Blend in the juice.""step": "Add ice and blend to desired consistency."
+            ]
+        }{
+            "name": "Coffee Smoothie",
+            "category": "Coffee",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "1 cup coffee",
+                "item": "1/2 cup milk",
+                "item": "1 scoop of chocolate protein powder",
+                "item": "6 cubes of ice",
+                "item": "1 frozen banana"
+            ],
+            "steps": [
+                "step": "Add all ingredients to the blender in order of the listed ingredients.""step": "Blend until perfect consistency is achieved.""step": "As a sweeter alternative you can add chocolate syrup, vanilla or chocolate ice cream, sorbet, pudding, or non fat yogurt."
+            ]
+        }{
+            "name": "Green Monster Smoothie Recipe",
+            "category": "Green",
+            "prep_time": "5 minutes",
+            "ingredients": [
+                "item": "1 large orange, peeled and segmented",
+                "item": "1/2 of a large banana, cut into chunks",
+                "item": "6 large strawberries",
+                "item": "2 cups spinach",
+                "item": "1/3 cup plain Greek yogurt (I use Chobani 0%)",
+                "item": "1 cup ice"
+            ],
+            "steps": [
+                "step": "Put all of the ingredients in a blender and puree until smooth."
+            ]
+        }{
+            "name": "Merry Christmas Smoothie",
+            "category": "Dessert",
+            "prep_time": "5 minutes",
+            "ingredients": [
+                "item": "1 banana",
+                "item": "1 cup milk",
+                "item": "1 Scoop vanilla bean ice cream",
+                "item": "1.5 ounces Amaretto",
+                "item": "1.5 ounces Kahlua",
+                "item": "Cinnamon""item": "Crushed Amaretti biscuits"
+            ],
+            "steps": [
+                "step": "Place all ingredients except for the biscuits and cinnamon in a blender and blend it for about a minute or until creamy.""step": "Garnish with the crushed Amaretti biscuits and cinnamon."
+            ]
+        }{
+            "name": "Protein-Packed Smoothie",
+            "category": "Workout",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "2 cups plain fat-free yogurt",
+                "item": "2 cups sliced strawberries",
+                "item": "1 cup orange-peach-mango juice",
+                "item": "2 tbsp honey",
+                "item": "2 tbsp peanut butter",
+                "item": "2 bananas"
+            ],
+            "steps": [
+                "step": "In a blender combine yogurt, bananas, the sliced strawberries, honey, and peanut butter.""step": "Cover and blend until nearly smooth, stopping to scrape down sides of container as necessary."
+            ]
+        }{
+            "name": "Strawberry Kiwi Smoothie",
+            "category": "Fruit",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "2 kiwis",
+                "item": "1 cup frozen whole strawberries",
+                "item": "1 container (6 ounces) low fat strawberry yogurt",
+                "item": "1/2 cup low fat milk",
+                "item": "2 tablespoons honey",
+                
+            ],
+            "steps": [
+                "step": "Peel the kiwis and cut them into chunks.""step": "Put the kiwi chunks, strawberries, yogurt, milk and honey into a blender container. The blender is sharp inside. Watch your fingers!""step": "Cover the blender with the lid and blend on high speed until the mixture is smooth. Turn the blender off and on or pulse, if needed, to break up the strawberries."
+            ]
+        }{
+            "name": "Coffee Smoothie Every Which Way",
+            "category": "Coffee",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "1 cup strongly brewed coffee,  cooled",
+                "item": "1 cup milk, cold",
+                "item": "2 heaping tablespoons instant vanilla pudding",
+                "item": "1-3 teaspoons of sugar",
+                "item": "2 cups of small ice cubes",
+                
+            ],
+            "steps": [
+                "step": "Add all of the ingredients to the blender and blend until no ice chunks remain."
+            ]
+        }{
+            "name": "Cherry Banana Smoothie",
+            "category": "Green",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "1 cup cherries",
+                "item": "1 whole banana",
+                "item": "2 cups fresh baby spinach",
+                "item": "1/2 cup water",
+                
+            ],
+            "steps": [
+                "step": "Blend until smooth"
+            ]
+        }{
+            "name": "Oreo Smoothie",
+            "category": "Dessert",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "4 tsp chocolate syrup",
+                "item": "8 oreo cookes",
+                "item": "1.5 cups milk",
+                "item": "2 cups vanilla ice cream",
+                
+            ],
+            "steps": [
+                "step": "Spoon 1 tsp. syrup into each of 4 glasses. Roll each glass to coat bottom and inside of glass. Finely chop 4 cookies; set aside""step": "Quarter remaining cookies; place in blender. Add milk and ice cream; blend until smooth."
+            ]
+        }{
+            "name": "Oat Cocoa Smoothie",
+            "category": "Workout",
+            "prep_time": "10 minutes",
+            "ingredients": [
+                "item": "3/4 cup (175 mL) skim milk",
+                "item": "1 tsp (5 mL) vanilla extract ",
+                "item": "1/2 cup (125 mL) plain low-fat yogurt ",
+                "item": "1/4 cup (60 mL) quick-cook oats",
+                "item": "1 Tbsp (15 mL) ground flaxseed",
+                "item": "1 tsp (5 mL) unsweetened cocoa powder",
+                "item": "Dash ground cinnamon or cardamom",
+                "item": "1 small banana, preferably frozen"
+            ],
+            "steps": [
+                "step": "Add all ingredients to a blender.""step": "Blend on low for 20 seconds, then on high about one minute."
+            ]
+        }
+    ]
+}

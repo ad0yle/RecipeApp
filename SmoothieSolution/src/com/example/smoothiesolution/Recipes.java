@@ -24,7 +24,9 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -55,7 +57,7 @@ public class Recipes extends Activity {
 			Log.d("ALD",id);
 		}
 		
-		new DownloadFilesTask().execute("http://ec2-54-242-12-103.compute-1.amazonaws.com/recipes_smaller.txt");
+		new DownloadFilesTask().execute("http://ec2-54-242-12-103.compute-1.amazonaws.com/API/populate_recipes.php");
 	
 		login.setOnClickListener(new View.OnClickListener() {
 			
@@ -116,29 +118,38 @@ public class Recipes extends Activity {
         }
 
         protected void onPostExecute(String result) {
-			/*JSONObject j;
+        	final ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+        	JSONObject j;
 			try {
 				j = new JSONObject(result);
-				JSONArray jsonRecipe = j.getJSONArray("recipes");
-				 for (int counter = 0; counter<jsonRecipe.length(); counter++) {
-	        			String name = ((JSONObject)jsonRecipe.get(counter)).getString("name");
-	        			String category = ((JSONObject)jsonRecipe.get(counter)).getString("category");
-	        			String prep_time = ((JSONObject)jsonRecipe.get(counter)).getString("prep_time");
-	        			JSONArray jsonIngredients = ((JSONObject)jsonRecipe.get(counter)).getJSONArray("ingredients");
-        				ArrayList<String> ingredients = new ArrayList<String>();
-	        			for (int counter2 = 0; counter2<6; counter++) {
-	        				Log.d("ALD",((JSONObject)jsonIngredients.get(counter2)).getString("item"));
-	        				//ingredients.add(((JSONObject)jsonIngredients.get(counter2)).getString("item"));
-	        			}
-	        			Log.d("ALD",name);
-	        			Log.d("ALD",category);
-	        			Log.d("ALD",prep_time);
-	        			
-	    			}
+				JSONArray jsonRecipes = j.getJSONArray("recipes");
+				for (int counter = 0; counter < jsonRecipes.length(); counter++) {
+        			String recipe_id = ((JSONObject)jsonRecipes.get(counter)).getString("recipeID");
+        			String recipe_name = ((JSONObject)jsonRecipes.get(counter)).getString("recipeName");
+        			String category = ((JSONObject)jsonRecipes.get(counter)).getString("category");
+        			String prep_time = ((JSONObject)jsonRecipes.get(counter)).getString("prepTime");
+        			Recipe new_recipe = new Recipe(recipe_id,recipe_name,category,prep_time);
+    				recipes.add(new_recipe);
+				}
+				
+	  			ArrayList<String> titles = new ArrayList<String>();
+    			ArrayList<String> categories = new ArrayList<String>();
+    			
+    			for (int i = 0; i < recipes.size(); i++) {
+    				titles.add(recipes.get(i).getName());
+    				categories.add(recipes.get(i).getCategory());
+    			}
+    			
+    			final ListView listview = (ListView) findViewById(R.id.listview);
+    	        final ArrayAdapter adapter;
+    		    adapter = new CustomAdapter(Recipes.this,titles);
+    	        listview.setAdapter(adapter);
+    			
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
+        	
         }
     }
 
