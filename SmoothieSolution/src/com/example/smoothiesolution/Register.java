@@ -153,7 +153,7 @@ public class Register extends Activity {
         		} else {
         			Toast toast1 = Toast.makeText(context, "Registration successful. Please login.", duration);
     	        	toast1.show();	
-    	        	Intent i = new Intent(Register.this, MainActivity.class);
+    	        	Intent i = new Intent(Register.this, Login.class);
     	        	startActivity(i);
         		}
         }
