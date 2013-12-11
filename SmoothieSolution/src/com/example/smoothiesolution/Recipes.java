@@ -57,7 +57,10 @@ public class Recipes extends Activity {
 			Log.d("ALD",id);
 		}
 		
-		new DownloadFilesTask().execute("http://ec2-54-242-12-103.compute-1.amazonaws.com/API/populate_recipes.php");
+		String urls[] = new String[2];
+		urls[0] = "http://ec2-54-242-12-103.compute-1.amazonaws.com/API/populate_recipes.php";
+		urls[1] = "http://ec2-54-242-12-103.compute-1.amazonaws.com/API/get_ingredients.php";
+		new DownloadFilesTask().execute(urls);
 	
 		login.setOnClickListener(new View.OnClickListener() {
 			
@@ -98,37 +101,51 @@ public class Recipes extends Activity {
     	}
     	
     	protected String doInBackground(String... urls) {
+    		
     		String url = urls[0];
+    		String url2 = urls[1];
     		String result = " ";
+    		String result2 = " ";
         	HttpClient client = new DefaultHttpClient();
         	HttpGet get = new HttpGet(url);
+        	HttpGet get2 = new HttpGet(url2);
+        	
         	try {
         		HttpResponse response = client.execute(get);
+        		HttpResponse response2 = client.execute(get2);
         		HttpEntity entity = response.getEntity();
+        		HttpEntity entity2 = response2.getEntity();
         			if (null != entity) {
         				result = EntityUtils.toString(entity); 
-        				//Log.d("ALD",result);
+        				result2 = EntityUtils.toString(entity2); 
+        				Log.d("ALD",result2);
         			}
         	} catch (ClientProtocolException e) {
         		e.printStackTrace();
         	} catch (IOException e) {
         		e.printStackTrace();
         	}
-           return result;
+           return result + "#" + result2;
         }
 
         protected void onPostExecute(String result) {
+        	String[] separated = result.split("#");
+        	String result1 = separated[0];
+        	String result2 = separated[1];
+        	
         	final ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+        	
         	JSONObject j;
 			try {
-				j = new JSONObject(result);
+				j = new JSONObject(result1);
 				JSONArray jsonRecipes = j.getJSONArray("recipes");
 				for (int counter = 0; counter < jsonRecipes.length(); counter++) {
         			String recipe_id = ((JSONObject)jsonRecipes.get(counter)).getString("recipeID");
         			String recipe_name = ((JSONObject)jsonRecipes.get(counter)).getString("recipeName");
         			String category = ((JSONObject)jsonRecipes.get(counter)).getString("category");
         			String prep_time = ((JSONObject)jsonRecipes.get(counter)).getString("prepTime");
-        			Recipe new_recipe = new Recipe(recipe_id,recipe_name,category,prep_time);
+        			ArrayList<String> ingredients = new ArrayList<String>();
+        			Recipe new_recipe = new Recipe(recipe_id,recipe_name,category,prep_time,ingredients);
     				recipes.add(new_recipe);
 				}
 				
@@ -149,6 +166,92 @@ public class Recipes extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
+			JSONObject k;
+			try {
+				k = new JSONObject(result2);
+				JSONArray jsonIngredients = k.getJSONArray("ingredients");
+				ArrayList<String> recipe1 = new ArrayList<String>();
+				ArrayList<String> recipe2 = new ArrayList<String>();
+				ArrayList<String> recipe3 = new ArrayList<String>();
+				ArrayList<String> recipe4 = new ArrayList<String>();
+				ArrayList<String> recipe5 = new ArrayList<String>();
+				ArrayList<String> recipe6 = new ArrayList<String>();
+				ArrayList<String> recipe7 = new ArrayList<String>();
+				ArrayList<String> recipe8 = new ArrayList<String>();
+				ArrayList<String> recipe9 = new ArrayList<String>();
+				ArrayList<String> recipe10 = new ArrayList<String>();
+				ArrayList<String> recipe11 = new ArrayList<String>();
+				ArrayList<String> recipe12 = new ArrayList<String>();
+				ArrayList<String> recipe13 = new ArrayList<String>();
+				ArrayList<String> recipe14 = new ArrayList<String>();
+				ArrayList<String> recipe15 = new ArrayList<String>();
+				
+				for (int counter1 = 0; counter1 < jsonIngredients.length(); counter1++) {
+					String id = ((JSONObject)jsonIngredients.get(counter1)).getString("recipeID");
+					if (id.equals("1")) {
+						recipe1.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("2")) {
+						recipe2.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("3")) {
+						recipe3.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("4")) {
+						recipe4.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("5")) {
+						recipe5.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("6")) {
+						recipe6.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("7")) {
+						recipe7.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("8")) {
+						recipe8.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("9")) {
+						recipe9.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("10")) {
+						recipe10.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("11")) {
+						recipe11.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("12")) {
+						recipe12.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("13")) {
+						recipe13.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("14")) {
+						recipe14.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					} else if (id.equals("15")) {
+						recipe15.add(((JSONObject)jsonIngredients.get(counter1)).getString("name"));
+					}
+				}
+					recipes.get(0).setIngredients(recipe1);
+					recipes.get(1).setIngredients(recipe2);
+					recipes.get(2).setIngredients(recipe3);
+					recipes.get(3).setIngredients(recipe4);
+					recipes.get(4).setIngredients(recipe5);
+					recipes.get(5).setIngredients(recipe6);
+					recipes.get(6).setIngredients(recipe7);
+					recipes.get(7).setIngredients(recipe8);
+					recipes.get(8).setIngredients(recipe9);
+					recipes.get(9).setIngredients(recipe10);
+					recipes.get(10).setIngredients(recipe11);
+					recipes.get(11).setIngredients(recipe12);
+					recipes.get(12).setIngredients(recipe13);
+					recipes.get(13).setIngredients(recipe14);
+					recipes.get(14).setIngredients(recipe15);
+					
+					
+					for (int counter3 = 0; counter3 < recipes.size(); counter3++) {
+						ArrayList<String> temp = new ArrayList<String>();
+						temp = recipes.get(counter3).getIngredients();
+						
+						for (int counter4 = 0; counter4 < temp.size(); counter4++) {
+							Log.d("ALD", temp.get(counter4));
+						}
+					}
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
         	
         }
     }
