@@ -44,7 +44,7 @@ public class Recipes extends Activity {
 		
 		Button view_all = (Button) findViewById(R.id.view_all);
 		Button favorites = (Button) findViewById(R.id.favorites);
-		Button categories = (Button) findViewById(R.id.categories);
+		Button categories = (Button) findViewById(R.id.categories_button);
 		Button logout = (Button) findViewById(R.id.logout);
 		Button login = (Button) findViewById(R.id.login);
 		
@@ -95,10 +95,11 @@ public class Recipes extends Activity {
 	}
 	
 	public class DownloadFilesTask extends AsyncTask<String, Void, String> {
-		
+		ProgressDialog pd;
     	@Override
     	protected void onPreExecute() {
     		super.onPreExecute();
+    		pd=ProgressDialog.show(Recipes.this,"","Loading Recipes...",false); 
     	}
     	
     	protected String doInBackground(String... urls) {
@@ -154,17 +155,16 @@ public class Recipes extends Activity {
 				}
 				
 	  			ArrayList<String> titles = new ArrayList<String>();
-    			ArrayList<String> categories = new ArrayList<String>();
     			
     			for (int i = 0; i < recipes.size(); i++) {
     				titles.add(recipes.get(i).getName());
-    				categories.add(recipes.get(i).getCategory());
     			}
     			
     			final ListView listview = (ListView) findViewById(R.id.listview);
     	        final ArrayAdapter adapter;
     		    adapter = new CustomAdapter(Recipes.this,titles);
     	        listview.setAdapter(adapter);
+    	        pd.dismiss();
     			
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -250,6 +250,27 @@ public class Recipes extends Activity {
 							Log.d("ALD", temp.get(counter4));
 						}*/
 					}
+					
+					Button categories = (Button) findViewById(R.id.categories_button);
+					categories.setOnClickListener(new View.OnClickListener() {
+						
+						@Override
+						public void onClick(View arg0) {
+							 Intent i = new Intent(Recipes.this, Categories.class);
+		    	             Bundle b = new Bundle();
+		    	             ArrayList<String> ids = new ArrayList<String>();
+		    	             
+		    	             for (int counter = 0; counter < recipes.size(); counter++) {
+				    	            final String recipe_id = recipes.get(counter).getRecipeID();
+				    	            ids.add(recipe_id);
+		    	             }
+		    	             	b.putString("user", user_id);
+		    	             	b.putStringArrayList("ids", ids);
+		    	             	
+				        	  i.putExtras(b);
+		    	              startActivity(i);							
+						}
+					});
 					
 					ListView listview = (ListView) findViewById(R.id.listview);
 					listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {

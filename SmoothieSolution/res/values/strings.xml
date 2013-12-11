@@ -26,5 +26,6 @@
     <string name="view_all">View All</string>
     <string name="title_activity_details">Details</string>
     <string name="ingredients">Ingredients</string>
+    <string name="title_activity_categories">Categories</string>
 
 </resources>

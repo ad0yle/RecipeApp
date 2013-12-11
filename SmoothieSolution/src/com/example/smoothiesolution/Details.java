@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -37,6 +38,11 @@ public class Details extends Activity {
 		final String user_id = b.getString("user");
 		final ArrayList<String> ingredients = b.getStringArrayList("ingredients");
 		final LinearLayout layout = (LinearLayout) findViewById(R.id.add);
+		
+		if(user_id.equals("none")) {
+			Button favorites = (Button) findViewById(R.id.favorites);
+			favorites.setVisibility(View.INVISIBLE);
+		}
 		
 		for (int i = 0; i<ingredients.size(); i++) {
 			final TextView ingredients_textView = new TextView(this);
