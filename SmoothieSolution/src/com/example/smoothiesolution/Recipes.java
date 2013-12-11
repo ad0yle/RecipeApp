@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -118,7 +119,7 @@ public class Recipes extends Activity {
         			if (null != entity) {
         				result = EntityUtils.toString(entity); 
         				result2 = EntityUtils.toString(entity2); 
-        				Log.d("ALD",result2);
+        				//Log.d("ALD",result2);
         			}
         	} catch (ClientProtocolException e) {
         		e.printStackTrace();
@@ -132,6 +133,9 @@ public class Recipes extends Activity {
         	String[] separated = result.split("#");
         	String result1 = separated[0];
         	String result2 = separated[1];
+        	
+        	Bundle b = getIntent().getExtras();
+    		final String user_id = b.getString("id");
         	
         	final ArrayList<Recipe> recipes = new ArrayList<Recipe>();
         	
@@ -242,10 +246,45 @@ public class Recipes extends Activity {
 						ArrayList<String> temp = new ArrayList<String>();
 						temp = recipes.get(counter3).getIngredients();
 						
-						for (int counter4 = 0; counter4 < temp.size(); counter4++) {
+						/*for (int counter4 = 0; counter4 < temp.size(); counter4++) {
 							Log.d("ALD", temp.get(counter4));
-						}
+						}*/
 					}
+					
+					ListView listview = (ListView) findViewById(R.id.listview);
+					listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+	    	            @Override
+	    	            public void onItemClick(AdapterView<?> parent, final View view,
+	    	                int position, long id) {
+	    	              //final Listing item = (Listing) parent.getItemAtPosition(position);
+	    	              Log.d("ALD",recipes.get(position).getName());
+	    	              final String recipe_id = recipes.get(position).getRecipeID();
+	    	              
+	    	              Intent i = new Intent(Recipes.this, Details.class);
+	    	              
+	    	              Bundle b = new Bundle();
+	    	              b.putStringArrayList("ingredients", recipes.get(position).getIngredients());
+	    	              b.putString("user", user_id);
+			        	  b.putString("recipe_id", recipe_id);
+			        	  b.putString("category", recipes.get(position).getCategory());
+			        	  b.putString("name", recipes.get(position).getName());
+			        	  b.putString("prep_time", recipes.get(position).getPrepTime());
+			        	  
+			        	 
+			        	  i.putExtras(b);
+	    	              startActivity(i);
+	    	              
+			        	  /*
+			        	  b.putString("title", listings.get(position).getTitle());
+			        	  b.putString("loggedIn", String.valueOf(value));
+			        	  b.putString("price", listings.get(position).getPrice());
+			        	  b.putString("description", listings.get(position).getDescription());
+			        	  b.putString("dateListed", listings.get(position).getDateListed());*/
+	    	            }
+
+	    	          });
+	    	        
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
