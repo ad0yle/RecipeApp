@@ -9,11 +9,15 @@
     mysql_select_db("smoothies", $con) 
         or die("Unable to select database:" . mysql_error());
 
-$id = $_POST['userID'];
+$id = $_GET['userID'];
 $int_id = (int) $id;
-$recipeID = $_POST['recipeID'];
-$int_recipe = (int) $recipeID;
-$query = "Insert into favorites values ($int_id,$int_recipe)";
 
+$query = "Select * from favorites where userID = $int_id";
 $result = mysql_query($query);
+$print = "";
+while ($row = mysql_fetch_assoc($result)){
+        $recipeID = $row['recipeID'];
+        $print = $print . $recipeID . '#';
+    }
+    echo $print;
 ?>
