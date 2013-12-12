@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,6 +50,23 @@ public class Categories extends Activity {
         final ArrayAdapter adapter;
 	    adapter = new CustomAdapter(Categories.this,categories);
         listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view,
+                int position, long id) {
+              //final Listing item = (Listing) parent.getItemAtPosition(position);
+              final String category_id = categories.get(position);
+              
+              Intent returnIntent = new Intent();
+              returnIntent.putExtra("category",category_id);
+              returnIntent.putExtra("user", user_id);
+              setResult(RESULT_OK,returnIntent);     
+              finish();
+            }
+
+          });
+        
 	}
 
 	@Override

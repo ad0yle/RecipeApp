@@ -32,7 +32,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class Recipes extends Activity {
-
+	
+	public final ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -95,11 +97,11 @@ public class Recipes extends Activity {
 	}
 	
 	public class DownloadFilesTask extends AsyncTask<String, Void, String> {
-		ProgressDialog pd;
+		//ProgressDialog pd;
     	@Override
     	protected void onPreExecute() {
     		super.onPreExecute();
-    		pd=ProgressDialog.show(Recipes.this,"","Loading Recipes...",false); 
+    		//pd=ProgressDialog.show(Recipes.this,"","Loading Recipes...",false); 
     	}
     	
     	protected String doInBackground(String... urls) {
@@ -138,7 +140,6 @@ public class Recipes extends Activity {
         	Bundle b = getIntent().getExtras();
     		final String user_id = b.getString("id");
         	
-        	final ArrayList<Recipe> recipes = new ArrayList<Recipe>();
         	
         	JSONObject j;
 			try {
@@ -164,7 +165,7 @@ public class Recipes extends Activity {
     	        final ArrayAdapter adapter;
     		    adapter = new CustomAdapter(Recipes.this,titles);
     	        listview.setAdapter(adapter);
-    	        pd.dismiss();
+    	        //pd.dismiss();
     			
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
@@ -266,11 +267,11 @@ public class Recipes extends Activity {
 		    	             }
 		    	             	b.putString("user", user_id);
 		    	             	b.putStringArrayList("ids", ids);
-		    	             	
 				        	  i.putExtras(b);
-		    	              startActivity(i);							
+		    	              startActivityForResult(i, 1);							
 						}
 					});
+					
 					
 					ListView listview = (ListView) findViewById(R.id.listview);
 					listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -316,4 +317,126 @@ public class Recipes extends Activity {
         }
     }
 
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		  if (requestCode == 1) {
+
+		     if(resultCode == RESULT_OK){      
+		         final String category=data.getStringExtra("category");
+		         final String user_id = data.getStringExtra("user");
+		         final ArrayList<String> names = new ArrayList<String>();
+		         
+		         Log.d("ALD",category);
+		         Log.d("ALD",user_id);
+		         
+		         for (int counter = 0; counter < recipes.size(); counter++) {
+		        	 if (recipes.get(counter).getCategory().equals(category)) {
+		        		 names.add(recipes.get(counter).getName());
+		        	 }
+		         }
+		         
+		         final ListView listview = (ListView) findViewById(R.id.listview);
+	    	       final ArrayAdapter adapter;
+	    		    adapter = new CustomAdapter(Recipes.this,names);
+	    	        listview.setAdapter(adapter);
+	    	        
+	    	        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+	    	            @Override
+	    	            public void onItemClick(AdapterView<?> parent, final View view,
+	    	                int position, long id) {
+	    	              //final Listing item = (Listing) parent.getItemAtPosition(position);
+	    	              String recipe_id = "";
+	    	              String category = "";
+	    	              String name = "";
+	    	              String prep_time = "";
+	    	              ArrayList<String> ingredients = new ArrayList<String>();
+	    	              for (int i = 0; i < recipes.size(); i++) {
+	    	            	  if (recipes.get(i).getName().equals(names.get(position))) {
+	    	            		  recipe_id = recipes.get(i).getRecipeID();
+	    	            		  category = recipes.get(i).getCategory();
+	    	            		  ingredients = recipes.get(i).getIngredients();
+	    	            		  name = recipes.get(i).getName();
+	    	            		  prep_time = recipes.get(i).getPrepTime();
+	    	            	  }
+	    	              }
+	    	              
+	    	              Intent i = new Intent(Recipes.this, Details.class);
+	    	              
+	    	              Bundle b = new Bundle();
+	    	              b.putStringArrayList("ingredients", ingredients);
+	    	              b.putString("user", user_id);
+			        	  b.putString("recipe_id", recipe_id);
+			        	  b.putString("category", category);
+			        	  b.putString("name", name);
+			        	  b.putString("prep_time", prep_time);
+			        	  
+			        	 
+			        	  i.putExtras(b);
+	    	              startActivity(i);
+	    	            }
+
+	    	          });
+	    	        
+	    	        Button view_all = (Button) findViewById(R.id.view_all);
+	    	        view_all.setOnClickListener(new View.OnClickListener() {
+						
+						@Override
+						public void onClick(View v) {
+							final ArrayList<String> view_all = new ArrayList<String>();
+							for (int counter = 0; counter < recipes.size(); counter++) {
+								view_all.add(recipes.get(counter).getName());
+							}
+							
+							final ArrayAdapter adapter2;
+			    		    adapter2 = new CustomAdapter(Recipes.this,view_all);
+			    		    listview.setAdapter(adapter2);
+			    		    
+			    		    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			    	            @Override
+			    	            public void onItemClick(AdapterView<?> parent, final View view,
+			    	                int position, long id) {
+			    	              //final Listing item = (Listing) parent.getItemAtPosition(position);
+			    	              String recipe_id = "";
+			    	              String category = "";
+			    	              String name = "";
+			    	              String prep_time = "";
+			    	              ArrayList<String> ingredients = new ArrayList<String>();
+			    	              for (int i = 0; i < recipes.size(); i++) {
+			    	            	  if (recipes.get(i).getName().equals(view_all.get(position))) {
+			    	            		  recipe_id = recipes.get(i).getRecipeID();
+			    	            		  category = recipes.get(i).getCategory();
+			    	            		  ingredients = recipes.get(i).getIngredients();
+			    	            		  name = recipes.get(i).getName();
+			    	            		  prep_time = recipes.get(i).getPrepTime();
+			    	            	  }
+			    	              }
+			    	              
+			    	              Intent i = new Intent(Recipes.this, Details.class);
+			    	              
+			    	              Bundle b = new Bundle();
+			    	              b.putStringArrayList("ingredients", ingredients);
+			    	              b.putString("user", user_id);
+					        	  b.putString("recipe_id", recipe_id);
+					        	  b.putString("category", category);
+					        	  b.putString("name", name);
+					        	  b.putString("prep_time", prep_time);
+					        	  
+					        	 
+					        	  i.putExtras(b);
+			    	              startActivity(i);
+			    	            }
+
+			    	          });
+			    	        
+						}
+					});
+		         
+		     }
+		     if (resultCode == RESULT_CANCELED) {    
+		         //Write your code if there's no result
+		     }
+		  }
+		}
 }
