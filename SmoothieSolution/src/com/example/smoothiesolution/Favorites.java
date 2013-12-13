@@ -15,12 +15,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class Categories extends Activity {
+public class Favorites extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_categories);
+		setContentView(R.layout.activity_favorites);
+		
 		Typeface tf= Typeface.createFromAsset(getApplicationContext().getAssets(),"fonts/RumRaisin-Regular.ttf");
 		
 		ActionBar actionbar = getActionBar();
@@ -30,49 +31,40 @@ public class Categories extends Activity {
 		
 		TextView header = (TextView) findViewById(R.id.categories_header);
 		header.setTypeface(tf);
+		Bundle c = getIntent().getExtras();
+		final String[] ids = c.getStringArray("ids");
+		final String user_id = c.getString("user");
+		final ArrayList<String> names = c.getStringArrayList("names");
 		
-		Bundle b = getIntent().getExtras();
-		final ArrayList<String> ids = b.getStringArrayList("ids");
-		final ArrayList<String> categories = new ArrayList<String>();
-		categories.add("Fruit");
-		categories.add("Green");
-		categories.add("Coffee");
-		categories.add("Dessert");
-		categories.add("Workout");
-		
-		final String user_id = b.getString("user");
-		
-		for (int counter = 0; counter < categories.size(); counter ++) {
-			Log.d("ALD",categories.get(counter));
-		}
-		
-		final ListView listview = (ListView) findViewById(R.id.listview2);
+		final ListView listview = (ListView) findViewById(R.id.listview3);
         final ArrayAdapter adapter;
-	    adapter = new CustomAdapter(Categories.this,categories);
+	    adapter = new CustomAdapter(Favorites.this,names);
         listview.setAdapter(adapter);
+        
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, final View view,
                 int position, long id) {
               //final Listing item = (Listing) parent.getItemAtPosition(position);
-              final String category_id = categories.get(position);
+              final String recipe_id = ids[position];
               
               Intent returnIntent = new Intent();
-              returnIntent.putExtra("category",category_id);
+              //Log.d("ALD",recipe_id);
+              //Log.d("ALD",user_id);
+              returnIntent.putExtra("recipe_id",recipe_id);
               returnIntent.putExtra("user", user_id);
               setResult(RESULT_OK,returnIntent);     
               finish();
             }
 
           });
-        
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.categories, menu);
+		getMenuInflater().inflate(R.menu.favorites, menu);
 		return true;
 	}
 	
@@ -84,5 +76,4 @@ public class Categories extends Activity {
 		finish();
 		super.onBackPressed();
 	}
-
 }

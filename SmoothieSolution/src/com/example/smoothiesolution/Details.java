@@ -43,6 +43,15 @@ public class Details extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_details);
 		
+		Button back = (Button) findViewById(R.id.back);
+		back.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();	
+			}
+		});
+		
 		ActionBar actionbar = getActionBar();
 		actionbar.setBackgroundDrawable(getResources().getDrawable(R.drawable.smoothie_banner));
 		actionbar.setDisplayShowHomeEnabled(false);
@@ -50,7 +59,7 @@ public class Details extends Activity {
 		
 		Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/RumRaisin-Regular.ttf");
 		
-		Bundle b = getIntent().getExtras();
+		final Bundle b = getIntent().getExtras();
 		final String recipeID = b.getString("recipe_id");
 		final String name = b.getString("name");
 		final String category = b.getString("category");

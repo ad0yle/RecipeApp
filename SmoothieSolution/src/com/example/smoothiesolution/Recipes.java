@@ -49,9 +49,19 @@ public class Recipes extends Activity {
 		Button categories = (Button) findViewById(R.id.categories_button);
 		Button logout = (Button) findViewById(R.id.logout);
 		Button login = (Button) findViewById(R.id.login);
+		Button refresh = (Button) findViewById (R.id.refresh);
+		
+		refresh.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				Log.d("ALD","refresh clicked");
+				finish();
+				startActivity(getIntent());
+			}
+		});
 		
 		Bundle b = getIntent().getExtras();
-		String id = b.getString("id");
+		final String id = b.getString("id");
 		if (id.equals("none")) {
 			favorites.setVisibility(View.INVISIBLE);
 			logout.setVisibility(View.INVISIBLE);
@@ -60,7 +70,17 @@ public class Recipes extends Activity {
 			Log.d("ALD",id);
 		}
 		
-		String urls[] = new String[2];
+		favorites.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				StringBuilder full_url = new StringBuilder().append("http://ec2-54-242-12-103.compute-1.amazonaws.com/API/get_favorites.php?userID=").append(id);
+				new DownloadFilesTask2().execute(full_url.toString());
+				
+			}
+		});
+		
+		String urls[] = new String[3];
 		urls[0] = "http://ec2-54-242-12-103.compute-1.amazonaws.com/API/populate_recipes.php";
 		urls[1] = "http://ec2-54-242-12-103.compute-1.amazonaws.com/API/get_ingredients.php";
 		new DownloadFilesTask().execute(urls);
@@ -119,10 +139,11 @@ public class Recipes extends Activity {
         		HttpResponse response2 = client.execute(get2);
         		HttpEntity entity = response.getEntity();
         		HttpEntity entity2 = response2.getEntity();
+
         			if (null != entity) {
         				result = EntityUtils.toString(entity); 
-        				result2 = EntityUtils.toString(entity2); 
-        				//Log.d("ALD",result2);
+        				result2 = EntityUtils.toString(entity2);
+
         			}
         	} catch (ClientProtocolException e) {
         		e.printStackTrace();
@@ -165,6 +186,9 @@ public class Recipes extends Activity {
     	        final ArrayAdapter adapter;
     		    adapter = new CustomAdapter(Recipes.this,titles);
     	        listview.setAdapter(adapter);
+    	        Button refresh = (Button) findViewById(R.id.refresh);
+    	        refresh.setVisibility(View.INVISIBLE);
+    	        
     	        //pd.dismiss();
     			
 			} catch (JSONException e) {
@@ -316,14 +340,119 @@ public class Recipes extends Activity {
         	
         }
     }
+	
+	
+	public class DownloadFilesTask2 extends AsyncTask<String, Void, String> {
+    	
+    	@Override
+    	protected void onPreExecute() {
+    		super.onPreExecute(); 
+    	}
+    	
+    	protected String doInBackground(String... urls) {
+    		String url = urls[0];
+    		String result = " ";
+        	HttpClient client = new DefaultHttpClient();
+        	HttpGet get = new HttpGet(url);
+        	try {
+        		HttpResponse response = client.execute(get);
+        		HttpEntity entity = response.getEntity();
+        			if (null != entity) {
+        				result = EntityUtils.toString(entity); 
+        			}
+        	} catch (ClientProtocolException e) {
+        		e.printStackTrace();
+        	} catch (IOException e) {
+        		e.printStackTrace();
+        	}
+           return result;
+        }
+
+        protected void onPostExecute(String result) {
+        	final String[] recipe_ids = result.split("#");
+        	 Intent i = new Intent(Recipes.this, Favorites.class);
+        	 Bundle b = getIntent().getExtras();
+     		 final String id = b.getString("id");
+     		 final ArrayList<String> names = new ArrayList<String>();
+     		 for (int counter = 0; counter < recipe_ids.length; counter++) {
+     			 String recipe_id = recipe_ids[counter];
+     			 for (int counter2 = 0; counter2 < recipes.size(); counter2++) {
+     				 if (recipes.get(counter2).getRecipeID().equals(recipe_id)) {
+     					 names.add(recipes.get(counter2).getName());
+     				 }
+     			 }
+     		 }
+        	 Bundle c = new Bundle();
+             	c.putString("user", id);
+             	c.putStringArray("ids", recipe_ids);
+             	c.putStringArrayList("names", names);
+        	  i.putExtras(c);
+              startActivityForResult(i,2);							
+		}
+        }
+
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        final String user_id = data.getStringExtra("user");
+        final ListView listview = (ListView) findViewById(R.id.listview);
+		
+		Button view_all = (Button) findViewById(R.id.view_all);
+        view_all.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				final ArrayList<String> view_all = new ArrayList<String>();
+				for (int counter = 0; counter < recipes.size(); counter++) {
+					view_all.add(recipes.get(counter).getName());
+				}
+				
+				final ArrayAdapter adapter2;
+    		    adapter2 = new CustomAdapter(Recipes.this,view_all);
+    		    listview.setAdapter(adapter2);
+    		    
+    		    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+    	            @Override
+    	            public void onItemClick(AdapterView<?> parent, final View view,
+    	                int position, long id) {
+    	              //final Listing item = (Listing) parent.getItemAtPosition(position);
+    	              String recipe_id = "";
+    	              String category = "";
+    	              String name = "";
+    	              String prep_time = "";
+    	              ArrayList<String> ingredients = new ArrayList<String>();
+    	              for (int i = 0; i < recipes.size(); i++) {
+    	            	  if (recipes.get(i).getName().equals(view_all.get(position))) {
+    	            		  recipe_id = recipes.get(i).getRecipeID();
+    	            		  category = recipes.get(i).getCategory();
+    	            		  ingredients = recipes.get(i).getIngredients();
+    	            		  name = recipes.get(i).getName();
+    	            		  prep_time = recipes.get(i).getPrepTime();
+    	            	  }
+    	              }
+    	              
+    	              Intent i = new Intent(Recipes.this, Details.class);
+    	              
+    	              Bundle b = new Bundle();
+    	              b.putStringArrayList("ingredients", ingredients);
+    	              b.putString("user", user_id);
+		        	  b.putString("recipe_id", recipe_id);
+		        	  b.putString("category", category);
+		        	  b.putString("name", name);
+		        	  b.putString("prep_time", prep_time);
+		        	  
+		        	 
+		        	  i.putExtras(b);
+    	              startActivity(i);
+    	            }
+
+    	          });
+			}
+        });
+        
 		  if (requestCode == 1) {
-
 		     if(resultCode == RESULT_OK){      
 		         final String category=data.getStringExtra("category");
-		         final String user_id = data.getStringExtra("user");
 		         final ArrayList<String> names = new ArrayList<String>();
 		         
 		         Log.d("ALD",category);
@@ -334,9 +463,8 @@ public class Recipes extends Activity {
 		        		 names.add(recipes.get(counter).getName());
 		        	 }
 		         }
-		         
-		         final ListView listview = (ListView) findViewById(R.id.listview);
-	    	       final ArrayAdapter adapter;
+		        
+	    	        final ArrayAdapter adapter;
 	    		    adapter = new CustomAdapter(Recipes.this,names);
 	    	        listview.setAdapter(adapter);
 	    	        
@@ -370,73 +498,55 @@ public class Recipes extends Activity {
 			        	  b.putString("category", category);
 			        	  b.putString("name", name);
 			        	  b.putString("prep_time", prep_time);
-			        	  
 			        	 
 			        	  i.putExtras(b);
 	    	              startActivity(i);
 	    	            }
 
 	    	          });
-	    	        
-	    	        Button view_all = (Button) findViewById(R.id.view_all);
-	    	        view_all.setOnClickListener(new View.OnClickListener() {
-						
-						@Override
-						public void onClick(View v) {
-							final ArrayList<String> view_all = new ArrayList<String>();
-							for (int counter = 0; counter < recipes.size(); counter++) {
-								view_all.add(recipes.get(counter).getName());
-							}
-							
-							final ArrayAdapter adapter2;
-			    		    adapter2 = new CustomAdapter(Recipes.this,view_all);
-			    		    listview.setAdapter(adapter2);
-			    		    
-			    		    listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-			    	            @Override
-			    	            public void onItemClick(AdapterView<?> parent, final View view,
-			    	                int position, long id) {
-			    	              //final Listing item = (Listing) parent.getItemAtPosition(position);
-			    	              String recipe_id = "";
-			    	              String category = "";
-			    	              String name = "";
-			    	              String prep_time = "";
-			    	              ArrayList<String> ingredients = new ArrayList<String>();
-			    	              for (int i = 0; i < recipes.size(); i++) {
-			    	            	  if (recipes.get(i).getName().equals(view_all.get(position))) {
-			    	            		  recipe_id = recipes.get(i).getRecipeID();
-			    	            		  category = recipes.get(i).getCategory();
-			    	            		  ingredients = recipes.get(i).getIngredients();
-			    	            		  name = recipes.get(i).getName();
-			    	            		  prep_time = recipes.get(i).getPrepTime();
-			    	            	  }
-			    	              }
-			    	              
-			    	              Intent i = new Intent(Recipes.this, Details.class);
-			    	              
-			    	              Bundle b = new Bundle();
-			    	              b.putStringArrayList("ingredients", ingredients);
-			    	              b.putString("user", user_id);
-					        	  b.putString("recipe_id", recipe_id);
-					        	  b.putString("category", category);
-					        	  b.putString("name", name);
-					        	  b.putString("prep_time", prep_time);
-					        	  
-					        	 
-					        	  i.putExtras(b);
-			    	              startActivity(i);
-			    	            }
-
-			    	          });
-			    	        
-						}
-					});
 		         
 		     }
 		     if (resultCode == RESULT_CANCELED) {    
 		         //Write your code if there's no result
 		     }
 		  }
+		  
+		  if (requestCode == 2) {
+			  if(resultCode == RESULT_OK){      
+			        final String user = data.getStringExtra("user");
+			        final String recipe_id = data.getStringExtra("recipe_id");
+   	              	String category = "";
+   	              	String name = "";
+   	              	String prep_time = "";
+   	                ArrayList<String> ingredients = new ArrayList<String>();
+   	                
+			         for (int counter = 0; counter < recipes.size(); counter ++) {
+			        	 if (recipes.get(counter).getRecipeID().equals(recipe_id)) {
+			        		 category = recipes.get(counter).getCategory();
+			        		 name = recipes.get(counter).getName();
+			        		 prep_time = recipes.get(counter).getPrepTime();
+			        		 ingredients = recipes.get(counter).getIngredients();
+			        	 }
+			         }
+			         
+			         Intent i = new Intent(Recipes.this, Details.class);
+   	              
+   	              	Bundle b = new Bundle();
+   	              	b.putStringArrayList("ingredients", ingredients);
+   	              	b.putString("user", user);
+		        	b.putString("recipe_id", recipe_id);
+		            b.putString("category", category);
+		        	b.putString("name", name);
+		        	b.putString("prep_time", prep_time);
+
+		        	i.putExtras(b);
+   	                startActivity(i);
+			  }
+			  
+			  if(resultCode == RESULT_CANCELED){  
+				  Log.d("ALD","pressed back");
+			  }
+		  }
+		  }
 		}
-}
+

@@ -18,6 +18,15 @@
     	android:layout_gravity="center_horizontal"
     	android:orientation="vertical"
     	android:gravity="center_horizontal">
+    	
+                   <Button
+        android:id = "@+id/back"
+        android:layout_height = "35dp"
+        android:layout_width = "70dp"
+        android:background = "@drawable/back"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="left"/>
     
     <TextView
         android:id="@+id/title"
@@ -57,13 +66,16 @@
           android:layout_height = "200dp"
           android:background="#96ffffff"
           android:layout_gravity="center_horizontal"
-          android:gravity = "center_horizontal">
+          android:gravity = "center_horizontal"
+          android:orientation= "vertical">
+      
       <Button
         android:id = "@+id/favorites"
         android:layout_height = "40dp"
         android:layout_width = "130dp"
         android:background = "@drawable/add_to_favorites"
         android:layout_marginTop="20dp"/>
+           
       </LinearLayout>
       
 

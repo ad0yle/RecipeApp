@@ -44,6 +44,10 @@
             android:name="com.example.smoothiesolution.Categories"
             android:label="@string/title_activity_categories" >
         </activity>
+        <activity
+            android:name="com.example.smoothiesolution.Favorites"
+            android:label="@string/title_activity_favorites" >
+        </activity>
     </application>
 
 </manifest>
